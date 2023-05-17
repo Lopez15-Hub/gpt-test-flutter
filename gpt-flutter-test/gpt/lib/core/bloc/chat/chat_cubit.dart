@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
 import '../../../presentation/widgets/widgets.dart';
 import '../../types/types.dart';
 import '../blocs.dart';
 
 part 'chat_state.dart';
+
+//
 
 class ChatCubit extends Cubit<ChatState> {
   final GptFormCubit _formCubit;
