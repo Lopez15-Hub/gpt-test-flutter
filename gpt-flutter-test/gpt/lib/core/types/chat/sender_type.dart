@@ -1,0 +1,1 @@
+enum Sender { chatGPT, user }
