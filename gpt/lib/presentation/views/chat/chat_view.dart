@@ -24,7 +24,6 @@ class ChatView extends StatelessWidget {
           child: BlocBuilder<GptCubit, GptState>(
             builder: (_, state) {
               if (state is ErrorResponse) {
-                navigationCubit.goToEnterKey(context);
                 return Center(child: Text(state.message));
               }
               if (state is GptResponse) {

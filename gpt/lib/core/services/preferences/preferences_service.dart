@@ -21,5 +21,10 @@ class PreferencesService {
   ///
   /// [keyName] name of string.
   String? getLocalString(String keyName) => _prefs.getString(keyName)!;
+
+  ///
+  /// Validates if exists string in local storage.
+  ///
+  /// [keyName] name of string.
   bool existsString(String keyName) => _prefs.containsKey(keyName);
 }

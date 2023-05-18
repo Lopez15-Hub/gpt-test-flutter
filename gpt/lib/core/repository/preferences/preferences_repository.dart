@@ -12,6 +12,7 @@ class PreferencesRepository {
 
   ///
   /// Store the openAi Key in local storage.
+  /// 
   /// [value] openAi key value.
   setGptKey(String value) => service.setLocalString("gptKey", value);
   

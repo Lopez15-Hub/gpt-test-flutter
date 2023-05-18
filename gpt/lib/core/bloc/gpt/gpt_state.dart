@@ -35,4 +35,3 @@ class ErrorResponse extends GptState {
   }
 }
 
-class TokenIsValid extends GptState {}

@@ -21,7 +21,7 @@ class GptFormCubit extends Cubit<GptFormState> {
   ///
   ///[formState] state of form.
   ///
-  /// Emit a FormIsValid state with a true or false.
+  /// Emit a FormIsValid state.
   void validate(FormState formState) {
     if (formState.validate()) {
       emit(FormIsValid());

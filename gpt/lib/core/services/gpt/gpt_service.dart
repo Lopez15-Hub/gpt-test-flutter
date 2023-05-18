@@ -55,20 +55,5 @@ class GptService {
   void insertMessageToGPTContext(String role, String content) =>
       messages.add({"role": role, "content": content});
 
-  /// Validate the key provided
-  ///
-  /// [apiKey] The OpenAi key value
-  ///
-  ///
-  Future<bool> test(String apiKey) async {
-    try {
-      final request = CompleteText(
-          prompt: 'What is human life expectancy in the United States?',
-          model: Model.textDavinci3);
-      await openAi.onCompletion(request: request);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
+
 }

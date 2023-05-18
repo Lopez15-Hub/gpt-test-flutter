@@ -19,10 +19,5 @@ class NavigationCubit extends Cubit<NavigationState> {
     navigator.pushReplacementNamed("chat");
   }
 
-  /// Go to enter key page.
-  /// [navigator] State of Navigator
-  void goToEnterKey(BuildContext context) {
-    navigator = Navigator.of(context);
-    navigator.pushReplacementNamed("enterKey");
-  }
+
 }

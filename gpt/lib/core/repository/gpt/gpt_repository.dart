@@ -26,5 +26,4 @@ class GptRepository {
   /// [context] Message content.
   void updateConversationContext(String role, String content) =>
       service.insertMessageToGPTContext(role, content);
-  Future<bool> test(String apiKey) async => await service.test(apiKey);
 }
