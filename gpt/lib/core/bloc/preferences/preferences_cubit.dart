@@ -45,7 +45,16 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   ///
   /// Emit a ChatGptKeyRetrieved when the key was retrieved.
   void retrieveGptKey() {
-    _repository.getGptKey();
-    emit(ChatGptKeyRetrieved(state.gptKey));
+    try {
+      final String key = _repository.getGptKey();
+      if (key.isNotEmpty) {
+        emit(ChatGptKeyRetrieved(state.gptKey));
+      }
+      if (key.isEmpty) {
+        emit(ChatGptKeyEmpty(state.gptKey));
+      }
+    } catch (error) {
+      emit(ChatGptKeyRetrievedFailed(error.toString()));
+    }
   }
 }

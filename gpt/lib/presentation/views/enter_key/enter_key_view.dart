@@ -16,6 +16,7 @@ class EnterKey extends StatelessWidget {
     final preferencesCubit = BlocProvider.of<PreferencesCubit>(context);
     final navigatorCubit = BlocProvider.of<NavigationCubit>(context);
     final navigator = Navigator.of(context);
+    preferencesCubit.retrieveGptKey();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
@@ -23,8 +24,14 @@ class EnterKey extends StatelessWidget {
       ),
       body: BlocBuilder<PreferencesCubit, PreferencesState>(
         builder: (context, state) {
-          if (state.gptKey.isNotEmpty) {
+          if (state is ChatGptKeyRetrieved) {
             navigatorCubit.goToChat(navigator);
+          }
+          if (state is ChatGptKeyRetrievedFailed) {
+            return Center(
+              child: Text(
+                  "An ocurred error retrieving the key. Try again later, Error: ${state.error}"),
+            );
           }
           return FadeIn(
             animate: true,
