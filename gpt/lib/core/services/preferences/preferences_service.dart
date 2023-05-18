@@ -21,4 +21,5 @@ class PreferencesService {
   ///
   /// [keyName] name of string.
   String? getLocalString(String keyName) => _prefs.getString(keyName)!;
+  bool existsString(String keyName) => _prefs.containsKey(keyName);
 }

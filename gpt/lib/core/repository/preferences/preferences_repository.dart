@@ -18,4 +18,8 @@ class PreferencesRepository {
   /// 
   /// Get the openAi Key from local storage.
   getGptKey()async => service.getLocalString("gptKey") ?? "";
+  
+  /// 
+  /// Checks if value exists
+  existsKey()async => service.existsString("gptKey");
 }
