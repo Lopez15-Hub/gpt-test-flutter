@@ -4,6 +4,7 @@
 ## Getting Started
 
 You can read this short docs by know more about project structure.
+__More comments are presents in core files.__
 
 ## How to run the app
 
