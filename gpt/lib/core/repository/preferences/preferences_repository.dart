@@ -21,5 +21,5 @@ class PreferencesRepository {
   
   /// 
   /// Checks if value exists
-  existsKey()async => service.existsString("gptKey");
+  Future<bool>existsKey()async => service.existsString("gptKey");
 }

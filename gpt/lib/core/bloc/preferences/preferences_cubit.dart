@@ -15,9 +15,7 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   final NavigationCubit _navigationCubit;
 
   PreferencesCubit(this._repository, this._formCubit, this._navigationCubit)
-      : super(PreferencesInitial("")) {
-    retrieveGptKey();
-  }
+      : super(PreferencesInitial(""));
 
   /// Stores the OpenAi key that comes from the form.
   ///
@@ -44,15 +42,19 @@ class PreferencesCubit extends Cubit<PreferencesState> {
 
   /// Retrieve the OpenAi key from the local storage.
   ///
+  /// [context] context of EnterKeyView
+  ///
   /// Emit a ChatGptKeyRetrieved when the key was retrieved.
-  void retrieveGptKey() async {
-    try {
-      if (await _repository.existsKey()) {
+  void retrieveGptKey(BuildContext context) {
+    _repository.existsKey().then((existsKey) {
+      if (existsKey) {
         emit(ChatGptKeyRetrieved(state.gptKey));
+        _navigationCubit.goToChat(context);
+      } else {
+        emit(PreferencesInitial(""));
       }
-      emit(PreferencesInitial(""));
-    } catch (error) {
+    }).catchError((error) {
       emit(ChatGptKeyRetrievedFailed(error.toString()));
-    }
+    });
   }
 }
