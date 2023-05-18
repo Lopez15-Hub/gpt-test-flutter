@@ -10,7 +10,8 @@ __More comments are presents in core files.__
 
  0. Clone repository into local folder.
  1. Use pub to get packages.
- 2. Open a shell and write *flutter run*
+ 2. Open an emulator or connect your device to pc. (Can execute in web mode.)
+ 2. Open a shell and write *flutter run* and select your device.
 ## Get and OpenAi Api Key
  0. Go to https://platform.openai.com/ web site.
  1. Login, and go to *api keys*. 
