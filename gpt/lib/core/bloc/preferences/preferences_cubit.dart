@@ -15,7 +15,9 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   final NavigationCubit _navigationCubit;
 
   PreferencesCubit(this._repository, this._formCubit, this._navigationCubit)
-      : super(PreferencesInitial(""));
+      : super(PreferencesInitial("")) {
+    retrieveGptKey();
+  }
 
   /// Stores the OpenAi key that comes from the form.
   ///
@@ -25,15 +27,14 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   ///
   /// [navigator] State of navigator.
   /// Emit a StoredChatGptKey when the key was stored or StoredChatGptKeyFailed if exists.
-  void storeGptKey(
-      FormState formState, String value, NavigatorState navigator) {
+  void storeGptKey(FormState formState, String value, BuildContext context) {
     emit(SavingData());
     try {
       _formCubit.validate(formState);
       if (_formCubit.state is FormIsValid) {
         _repository.setGptKey(value.trim());
         _formCubit.reset(formState);
-        _navigationCubit.goToChat(navigator);
+        _navigationCubit.goToChat(context);
       }
       emit(StoredChatGptKey(state.gptKey));
     } catch (error) {

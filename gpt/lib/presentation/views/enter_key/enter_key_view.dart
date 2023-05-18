@@ -6,17 +6,20 @@ import 'package:gpt/core/bloc/blocs.dart';
 import '../../widgets/app/custom_appbar_widget.dart';
 import '../../widgets/widgets.dart';
 
-class EnterKey extends StatelessWidget {
+class EnterKey extends StatefulWidget {
   const EnterKey({super.key});
 
+  @override
+  State<EnterKey> createState() => _EnterKeyState();
+}
+
+class _EnterKeyState extends State<EnterKey> {
   @override
   Widget build(BuildContext context) {
     final formCubit = BlocProvider.of<GptFormCubit>(context);
     final apiFormKey = GlobalKey<FormState>();
     final preferencesCubit = BlocProvider.of<PreferencesCubit>(context);
     final navigatorCubit = BlocProvider.of<NavigationCubit>(context);
-    final navigator = Navigator.of(context);
-    preferencesCubit.retrieveGptKey();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
@@ -25,7 +28,7 @@ class EnterKey extends StatelessWidget {
       body: BlocBuilder<PreferencesCubit, PreferencesState>(
         builder: (context, state) {
           if (state is ChatGptKeyRetrieved) {
-            navigatorCubit.goToChat(navigator);
+            navigatorCubit.goToChat(context);
           }
           if (state is ChatGptKeyRetrievedFailed) {
             return Center(

@@ -14,7 +14,6 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigator = Navigator.of(context);
     return BlocBuilder<PreferencesCubit, PreferencesState>(
       builder: (context, state) {
         if (state is StoredChatGptKeyFailed) {
@@ -41,7 +40,7 @@ class SubmitButton extends StatelessWidget {
                   onPressed: () => preferencesCubit.storeGptKey(
                       apiFormKey.currentState!,
                       state is ReadMessage ? state.message : "",
-                      navigator),
+                      context),
                   child: const Text("Enter to chat")),
             );
           },
