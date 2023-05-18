@@ -20,8 +20,7 @@ class GptTest extends StatelessWidget {
           create: (context) => PreferencesCubit(
               PreferencesRepository(PreferencesService()),
               context.read<GptFormCubit>(),
-              context.read<NavigationCubit>(),
-            context.read<GptCubit>()),
+              context.read<NavigationCubit>()),
         ),
         BlocProvider(
             create: (context) => GptCubit(

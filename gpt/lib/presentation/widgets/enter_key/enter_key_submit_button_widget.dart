@@ -14,6 +14,7 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gptCubit = BlocProvider.of<GptCubit>(context);
     return BlocBuilder<PreferencesCubit, PreferencesState>(
       builder: (context, state) {
         if (state is StoredChatGptKeyFailed) {
@@ -25,7 +26,8 @@ class SubmitButton extends StatelessWidget {
         if (state is SavingData) {
           return const Center(
             child: CircularProgressIndicator(
-                color: Colors.green,),
+              color: Colors.green,
+            ),
           );
         }
         return BlocBuilder<GptFormCubit, GptFormState>(
@@ -40,7 +42,8 @@ class SubmitButton extends StatelessWidget {
                   onPressed: () => preferencesCubit.storeGptKey(
                       apiFormKey.currentState!,
                       state is ReadMessage ? state.message : "",
-                      context),
+                      context,
+                      gptCubit),
                   child: const Text("Enter to chat")),
             );
           },
