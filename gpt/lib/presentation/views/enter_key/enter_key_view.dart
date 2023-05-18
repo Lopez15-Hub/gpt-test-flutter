@@ -15,7 +15,7 @@ class EnterKey extends StatelessWidget {
     final apiFormKey = GlobalKey<FormState>();
     preferencesCubit.retrieveGptKey(context);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: const CustomAppbar(
         appTitle: "Enter Api Key",
       ),
@@ -29,30 +29,33 @@ class EnterKey extends StatelessWidget {
           }
           return FadeIn(
             animate: true,
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/chat_gpt_icon.jpg",
-                    height: 200,
-                    width: 200,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "Insert you OpenAi Key Below",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            child: SingleChildScrollView(
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/chat_gpt_icon.jpg",
+                      height: 200,
+                      width: 200,
                     ),
-                  ),
-                  EnterKeyForm(apiFormKey: apiFormKey, formCubit: formCubit),
-                  SubmitButton(
-                    preferencesCubit: preferencesCubit,
-                    apiFormKey: apiFormKey,
-                  )
-                ],
+                    const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "Insert you OpenAi Key Below",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    EnterKeyForm(apiFormKey: apiFormKey, formCubit: formCubit),
+                    SubmitButton(
+                      preferencesCubit: preferencesCubit,
+                      apiFormKey: apiFormKey,
+                    )
+                  ],
+                ),
               ),
             ),
           );
