@@ -35,7 +35,7 @@ class PreferencesCubit extends Cubit<PreferencesState> {
         _formCubit.reset(formState);
         _navigationCubit.goToChat(navigator);
       }
-      emit(StoredChatGptKey(state.gptKey));
+      emit(PreferencesInitial(""));
     } catch (error) {
       emit(StoredChatGptKeyFailed(error.toString()));
     }
@@ -46,12 +46,12 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   /// Emit a ChatGptKeyRetrieved when the key was retrieved.
   void retrieveGptKey() {
     try {
-      final String key = _repository.getGptKey();
-      if (key.isNotEmpty) {
+      final String? key = _repository.getGptKey();
+      if (key!.isNotEmpty) {
         emit(ChatGptKeyRetrieved(state.gptKey));
       }
       if (key.isEmpty) {
-        emit(ChatGptKeyEmpty(state.gptKey));
+        emit(PreferencesInitial(state.gptKey));
       }
     } catch (error) {
       emit(ChatGptKeyRetrievedFailed(error.toString()));

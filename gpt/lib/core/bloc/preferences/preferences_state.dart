@@ -1,7 +1,7 @@
 part of 'preferences_cubit.dart';
 
 abstract class PreferencesState {
-  final String gptKey;
+  final String? gptKey;
 
   PreferencesState(this.gptKey);
 }
@@ -21,9 +21,6 @@ class ChatGptKeyRetrievedFailed extends PreferencesState {
 
 class StoredChatGptKey extends PreferencesState {
   StoredChatGptKey(super.gptKey);
-}
-class ChatGptKeyEmpty extends PreferencesState {
-  ChatGptKeyEmpty(super.gptKey);
 }
 
 class StoredChatGptKeyFailed extends PreferencesState {
