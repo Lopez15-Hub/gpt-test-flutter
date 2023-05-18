@@ -44,10 +44,10 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   /// Retrieve the OpenAi key from the local storage.
   ///
   /// Emit a ChatGptKeyRetrieved when the key was retrieved.
-  void retrieveGptKey() {
+  void retrieveGptKey()async {
     try {
-      final String? key = _repository.getGptKey() ?? "";
-      if (key!.isNotEmpty) {
+      final String key = await _repository.getGptKey() ?? "";
+      if (key.isNotEmpty) {
         emit(ChatGptKeyRetrieved(state.gptKey));
       }
       emit(PreferencesInitial(""));
