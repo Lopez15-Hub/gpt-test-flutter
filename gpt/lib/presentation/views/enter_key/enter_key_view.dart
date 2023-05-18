@@ -31,8 +31,7 @@ class EnterKey extends StatelessWidget {
             animate: true,
             child: SingleChildScrollView(
               child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
