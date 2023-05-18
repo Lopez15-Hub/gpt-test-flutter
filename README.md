@@ -16,7 +16,7 @@ __More comments are presents in core files.__
  0. Go to https://platform.openai.com/ web site.
  1. Login, and go to *api keys*. 
  2.  Generate the Api Key and paste into the input of flutter app.  (The app must be running).
-3. Once you place the API Key just send and message like "Hey!". The Ia is prepared for get a conversation context.
+3. Once you place the API Key just send a message like "Hey!". The Ia is prepared for get a conversation context.
 
 ### Project Architecture
 
