@@ -12,7 +12,7 @@ __More comments are presents in core files.__
  1. Use pub to get packages.
  2. Open an emulator or connect your device to pc. (Can execute in web mode.)
  2. Open a shell and write *flutter run* and select your device.
-## Get OpenAi Key and use the app
+## Get the OpenAi Key and use the app
  0. Go to https://platform.openai.com/ web site.
  1. Login, and go to *api keys*. 
  2.  Generate the Api Key and paste into the input of flutter app.  (The app must be running).
