@@ -17,7 +17,7 @@ class ChatView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
-        appTitle: "Chat GPT Test",
+        appTitle: "Chat With GPT",
       ),
       body: FadeIn(
           animate: true,
