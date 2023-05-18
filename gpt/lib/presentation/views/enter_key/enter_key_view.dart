@@ -14,6 +14,7 @@ class EnterKey extends StatelessWidget {
     final formCubit = BlocProvider.of<GptFormCubit>(context);
     final apiFormKey = GlobalKey<FormState>();
     final preferencesCubit = BlocProvider.of<PreferencesCubit>(context);
+    final messenger = ScaffoldMessenger.of(context);
     preferencesCubit.retrieveGptKey(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -23,6 +24,12 @@ class EnterKey extends StatelessWidget {
       body: BlocBuilder<PreferencesCubit, PreferencesState>(
         builder: (context, state) {
           if (state is ChatGptKeyRetrievedFailed) {
+            if (state.error == "invalid_token") {
+              messenger.showSnackBar(SnackBar(
+                content: const Text("Invalid token. Please try again"),
+                backgroundColor: Colors.yellow[80],
+              ));
+            }
             return Center(
               child: Text(
                   "An ocurred error retrieving the key. Try again later, Error: ${state.error}"),

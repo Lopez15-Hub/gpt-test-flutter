@@ -31,4 +31,10 @@ class GptCubit extends Cubit<GptState> {
       return "$error";
     }
   }
+
+  void testConnection(String apiToken) async {
+    final bool isValid = await _repository.test(apiToken);
+    if (isValid) emit(TokenIsValid());
+    
+  }
 }

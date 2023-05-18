@@ -12,9 +12,11 @@ part 'preferences_state.dart';
 class PreferencesCubit extends Cubit<PreferencesState> {
   final PreferencesRepository _repository;
   final GptFormCubit _formCubit;
+  final GptCubit _gptCubit;
   final NavigationCubit _navigationCubit;
 
-  PreferencesCubit(this._repository, this._formCubit, this._navigationCubit)
+  PreferencesCubit(
+      this._repository, this._formCubit, this._navigationCubit, this._gptCubit)
       : super(PreferencesInitial(""));
 
   /// Stores the OpenAi key that comes from the form.
@@ -30,11 +32,16 @@ class PreferencesCubit extends Cubit<PreferencesState> {
     try {
       _formCubit.validate(formState);
       if (_formCubit.state is FormIsValid) {
+        _gptCubit.testConnection(value);
+      }
+      if (_gptCubit.state is TokenIsValid) {
         _repository.setGptKey(value.trim());
         _formCubit.reset(formState);
         _navigationCubit.goToChat(context);
+        emit(StoredChatGptKey(state.gptKey));
+      } else {
+        emit(StoredChatGptKeyFailed("invalid_token"));
       }
-      emit(StoredChatGptKey(state.gptKey));
     } catch (error) {
       emit(StoredChatGptKeyFailed(error.toString()));
     }
