@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets.dart';
+
 class ChatGptMessage extends StatelessWidget {
   final String message;
 
@@ -28,9 +30,7 @@ class ChatGptMessage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    child: Image.asset("chat_gpt_icon.jpg"),
-                  ),
+                  const GptIcon(),
                   Container(
                     margin: const EdgeInsets.only(
                       left: 10,
@@ -51,6 +51,7 @@ class ChatGptMessage extends StatelessWidget {
                       softWrap: true,
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.clip,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ],

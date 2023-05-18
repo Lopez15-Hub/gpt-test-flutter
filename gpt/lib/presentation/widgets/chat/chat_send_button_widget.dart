@@ -27,9 +27,11 @@ class SendChatButton extends StatelessWidget {
               onPressed: () => chatCubit.sendMessage(
                   ChatMessage(message: state.message, sender: Sender.user),
                   _formState.currentState!),
-              icon: const Icon(
+              icon: Icon(
                 Icons.send,
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey
+                    : Colors.green,
               ));
         }
         return IconButton(
@@ -38,10 +40,16 @@ class SendChatButton extends StatelessWidget {
               : () => formCubit.validate(_formState.currentState!),
           icon: Icon(context.watch<ChatCubit>().state is GptIsWriting
               ? Icons.stop
-              : Icons.send),
+              : Icons.send,),
+          style: IconButton.styleFrom(
+            elevation: 4,
+            backgroundColor: Colors.grey,
+          ),
           color: context.watch<ChatCubit>().state is GptIsWriting
               ? Colors.grey
-              : Colors.white,
+              : Theme.of(context).brightness == Brightness.light
+                  ? Colors.green
+                  : Colors.grey,
         );
       },
     );

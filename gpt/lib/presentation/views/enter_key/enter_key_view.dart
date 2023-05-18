@@ -17,6 +17,7 @@ class EnterKey extends StatelessWidget {
     final navigatorCubit = BlocProvider.of<NavigationCubit>(context);
     final navigator = Navigator.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
         appTitle: "Enter Api Key",
       ),

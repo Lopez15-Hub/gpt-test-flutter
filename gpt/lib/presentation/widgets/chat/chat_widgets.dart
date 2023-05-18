@@ -5,3 +5,6 @@ export './chat_gpt_message.dart';
 export './chat_person_message.dart';
 export './chat_messages_list.dart';
 export './chat_send_button_widget.dart';
+export 'chat_messages_box_widget.dart';
+export 'chat_content_widget.dart';
+export 'chat_gpt_icon_widget.dart';

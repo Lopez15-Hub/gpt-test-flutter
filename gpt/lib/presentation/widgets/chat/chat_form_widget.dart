@@ -17,18 +17,17 @@ class ChatForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatCubit = BlocProvider.of<ChatCubit>(context);
-    return Card(
-      child: Form(
-        key: _formState,
-        child: Row(
-          children: [
-            Expanded(child: ChatTextInput(formCubit: formCubit)),
-            SendChatButton(
-                chatCubit: chatCubit,
-                formState: _formState,
-                formCubit: formCubit)
-          ],
-        ),
+    return Form(
+      key: _formState,
+      child: Row(
+        children: [
+          ChatTextInput(
+            gptCubit: gptCubit,
+            chatCubit: chatCubit,
+            formCubit: formCubit,
+            formState: _formState,
+          ),
+        ],
       ),
     );
   }

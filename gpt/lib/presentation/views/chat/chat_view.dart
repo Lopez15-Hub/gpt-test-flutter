@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/bloc/blocs.dart';
 import '../../widgets/app/custom_appbar_widget.dart';
-import '../../widgets/chat/chat_form_widget.dart';
-import '../../widgets/chat/chat_messages_box_widget.dart';
+import '../../widgets/widgets.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({
@@ -16,39 +15,23 @@ class ChatView extends StatelessWidget {
     final gptCubit = BlocProvider.of<GptCubit>(context);
     final formCubit = BlocProvider.of<GptFormCubit>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
         appTitle: "Chat GPT Test",
       ),
       body: FadeIn(
-        animate: true,
-        child: BlocBuilder<GptCubit, GptState>(
-        builder: (_, state) {
-          if (state is ErrorResponse) return Center(child: Text(state.message));
-          if (state is GptResponse) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ChatMessagesBox(text: state.response),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ChatForm(formCubit: formCubit, gptCubit: gptCubit),
-                    ],
-                  )
-                ],
-              ),
-            );
-          }
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const ChatMessagesBox(text: "Type Someting..."),
-              ChatForm(formCubit: formCubit, gptCubit: gptCubit),
-            ],
-          );
-        },
-      )),
+          animate: true,
+          child: BlocBuilder<GptCubit, GptState>(
+            builder: (_, state) {
+              if (state is ErrorResponse) {
+                return Center(child: Text(state.message));
+              }
+              if (state is GptResponse) {
+                return ChatContent(formCubit: formCubit, gptCubit: gptCubit);
+              }
+              return ChatContent(formCubit: formCubit, gptCubit: gptCubit);
+            },
+          )),
     );
   }
 }

@@ -31,6 +31,7 @@ class ChatPersonMessage extends StatelessWidget {
             softWrap: true,
             textAlign: TextAlign.left,
             overflow: TextOverflow.clip,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ),
