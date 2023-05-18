@@ -20,5 +20,5 @@ class PreferencesService {
   ///Generic method for get a string from local storage.
   ///
   /// [keyName] name of string.
-  String getLocalString(String keyName) => _prefs.getString(keyName)!;
+  String? getLocalString(String keyName) => _prefs.getString(keyName)!;
 }

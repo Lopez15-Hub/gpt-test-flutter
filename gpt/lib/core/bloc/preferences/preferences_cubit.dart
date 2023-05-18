@@ -27,10 +27,10 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   /// Emit a StoredChatGptKey when the key was stored or StoredChatGptKeyFailed if exists.
   void storeGptKey(
       FormState formState, String value, NavigatorState navigator) {
+    emit(SavingData());
     try {
       _formCubit.validate(formState);
       if (_formCubit.state is FormIsValid) {
-        emit(SavingData());
         _repository.setGptKey(value.trim());
         _formCubit.reset(formState);
         _navigationCubit.goToChat(navigator);

@@ -25,7 +25,7 @@ class GptTest extends StatelessWidget {
         BlocProvider(
             create: (context) => GptCubit(
                   repository: GptRepository(GptService(
-                      PreferencesService().getLocalString("gptKey"))),
+                      PreferencesService().getLocalString("gptKey")!)),
                 )),
         BlocProvider(
           create: (context) =>

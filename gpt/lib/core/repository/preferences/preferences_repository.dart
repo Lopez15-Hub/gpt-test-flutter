@@ -17,5 +17,5 @@ class PreferencesRepository {
   
   /// 
   /// Get the openAi Key from local storage.
-  getGptKey() => service.getLocalString("gptKey");
+  getGptKey() => service.getLocalString("gptKey") ?? "";
 }
