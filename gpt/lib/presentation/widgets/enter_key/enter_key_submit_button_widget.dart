@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/core.dart';
-import '../app/app_widgets.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
