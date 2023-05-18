@@ -15,7 +15,6 @@ class ChatView extends StatelessWidget {
     final gptCubit = BlocProvider.of<GptCubit>(context);
     final formCubit = BlocProvider.of<GptFormCubit>(context);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: const CustomAppbar(
         appTitle: "Chat With GPT",
       ),
