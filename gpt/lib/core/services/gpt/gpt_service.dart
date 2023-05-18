@@ -1,5 +1,4 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 
 ///
 /// GPT Repository store the methods,
