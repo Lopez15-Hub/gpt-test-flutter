@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/core.dart';
+import '../app/app_widgets.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
@@ -14,20 +15,12 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gptCubit = BlocProvider.of<GptCubit>(context);
     return BlocBuilder<PreferencesCubit, PreferencesState>(
       builder: (context, state) {
         if (state is StoredChatGptKeyFailed) {
           return Center(
             child: Text(
                 "An ocurred error storing the key, please, try again later. Error: ${state.error}"),
-          );
-        }
-        if (state is SavingData) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.green,
-            ),
           );
         }
         return BlocBuilder<GptFormCubit, GptFormState>(
@@ -39,11 +32,14 @@ class SubmitButton extends StatelessWidget {
                       backgroundColor: Colors.green,
                       padding: const EdgeInsets.only(
                           top: 20, bottom: 20, right: 100, left: 100)),
-                  onPressed: () => preferencesCubit.storeGptKey(
+                  onPressed: () {
+                    final message = state is ReadMessage ? state.message : "";
+                    preferencesCubit.storeGptKey(
                       apiFormKey.currentState!,
-                      state is ReadMessage ? state.message : "",
+                      message,
                       context,
-                      gptCubit),
+                    );
+                  },
                   child: const Text("Enter to chat")),
             );
           },

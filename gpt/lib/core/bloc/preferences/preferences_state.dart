@@ -13,8 +13,9 @@ class PreferencesInitial extends PreferencesState {
 class ChatGptKeyRetrieved extends PreferencesState {
   ChatGptKeyRetrieved(super.gptKey);
 }
+
 class ChatGptKeyRetrievedFailed extends PreferencesState {
-    final String error;
+  final String error;
 
   ChatGptKeyRetrievedFailed(this.error) : super("");
 }
@@ -26,8 +27,4 @@ class StoredChatGptKey extends PreferencesState {
 class StoredChatGptKeyFailed extends PreferencesState {
   final String error;
   StoredChatGptKeyFailed(this.error) : super("");
-}
-
-class SavingData extends PreferencesState {
-  SavingData() : super("");
 }

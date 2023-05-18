@@ -14,8 +14,7 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   final GptFormCubit _formCubit;
   final NavigationCubit _navigationCubit;
 
-  PreferencesCubit(
-      this._repository, this._formCubit, this._navigationCubit)
+  PreferencesCubit(this._repository, this._formCubit, this._navigationCubit)
       : super(PreferencesInitial(""));
 
   /// Stores the OpenAi key that comes from the form.
@@ -26,20 +25,15 @@ class PreferencesCubit extends Cubit<PreferencesState> {
   ///
   /// [navigator] State of navigator.
   /// Emit a StoredChatGptKey when the key was stored or StoredChatGptKeyFailed if exists.
-  void storeGptKey(FormState formState, String value,BuildContext context, GptCubit gptCubit) {
-    emit(SavingData());
+  void storeGptKey(
+      FormState formState, String value, BuildContext context) async {
     try {
       _formCubit.validate(formState);
       if (_formCubit.state is FormIsValid) {
-        gptCubit.testConnection(value);
-      }
-      if (gptCubit.state is TokenIsValid) {
         _repository.setGptKey(value.trim());
         _formCubit.reset(formState);
         _navigationCubit.goToChat(context);
         emit(StoredChatGptKey(state.gptKey));
-      } else {
-        emit(StoredChatGptKeyFailed("invalid_token"));
       }
     } catch (error) {
       emit(StoredChatGptKeyFailed(error.toString()));
@@ -57,7 +51,7 @@ class PreferencesCubit extends Cubit<PreferencesState> {
         emit(ChatGptKeyRetrieved(state.gptKey));
         _navigationCubit.goToChat(context);
       } else {
-        emit(PreferencesInitial(""));
+        PreferencesInitial("");
       }
     }).catchError((error) {
       emit(ChatGptKeyRetrievedFailed(error.toString()));

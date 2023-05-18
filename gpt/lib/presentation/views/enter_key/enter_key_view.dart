@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gpt/core/bloc/blocs.dart';
 
-import '../../widgets/app/custom_appbar_widget.dart';
 import '../../widgets/widgets.dart';
 
 class EnterKey extends StatelessWidget {
@@ -11,10 +10,9 @@ class EnterKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final preferencesCubit = BlocProvider.of<PreferencesCubit>(context);
     final formCubit = BlocProvider.of<GptFormCubit>(context);
     final apiFormKey = GlobalKey<FormState>();
-    final preferencesCubit = BlocProvider.of<PreferencesCubit>(context);
-    final messenger = ScaffoldMessenger.of(context);
     preferencesCubit.retrieveGptKey(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -24,12 +22,6 @@ class EnterKey extends StatelessWidget {
       body: BlocBuilder<PreferencesCubit, PreferencesState>(
         builder: (context, state) {
           if (state is ChatGptKeyRetrievedFailed) {
-            if (state.error == "invalid_token") {
-              messenger.showSnackBar(SnackBar(
-                content: const Text("Invalid token. Please try again"),
-                backgroundColor: Colors.yellow[80],
-              ));
-            }
             return Center(
               child: Text(
                   "An ocurred error retrieving the key. Try again later, Error: ${state.error}"),
@@ -57,8 +49,9 @@ class EnterKey extends StatelessWidget {
                   ),
                   EnterKeyForm(apiFormKey: apiFormKey, formCubit: formCubit),
                   SubmitButton(
-                      preferencesCubit: preferencesCubit,
-                      apiFormKey: apiFormKey)
+                    preferencesCubit: preferencesCubit,
+                    apiFormKey: apiFormKey,
+                  )
                 ],
               ),
             ),
